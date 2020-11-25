@@ -12,7 +12,7 @@ import json
 import datetime
 from sales import Sales
 from model import SalesModel
-from main import extract_data
+from main import get_sales
 
 from pathlib import Path
 
@@ -56,6 +56,8 @@ def get_test_listing():
             "street_number": "4",
             "street_type": "St",
             "suburb": "Aberfeldie",
+            "price": 1700000,
+            "result": "AUVB",
         },
     }
 
@@ -77,8 +79,8 @@ class TestExtractData(TestCase):
             d = json.load(f)
             self.test_data = d
 
-    def test_extract_data(self):
-        pass
+    def test_get_sales(self):
+        result = get_sales(self.test_data)
 
 
 if __name__ == "__main__":

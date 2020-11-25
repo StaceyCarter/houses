@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, Text, MetaData, Table, String, DateTime
+from sqlalchemy import Column, Integer, Text, MetaData, Table, String, DateTime, Float
 from sqlalchemy.orm import sessionmaker
 from geoalchemy2 import Geometry
 
@@ -26,7 +26,9 @@ class SalesModel(base):
     property_details_url = Column(String(400))
     agent = Column(String(400))
     agency_name = Column(String(400))
-    geom = Column(Geometry(geometry_type="POINT", srid="4362"))  # 4362 is lat long
+    price = Column(Float)
+    result = Column(String(50))
+    geom = Column(Geometry(geometry_type="POINT", srid="4326"))  # 4326 is lat long
 
 
 def create_tables(db):

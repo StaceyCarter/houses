@@ -29,11 +29,15 @@ class Sales:
             "agent": sales_dict.get("agent"),
             "agency_name": sales_dict.get("agencyName"),
             "geom": self.get_geometry_string(sales_dict.get("geoLocation")),
+            "price": sales_dict.get("price"),
+            "result": sales_dict.get("result"),
         }
         self.sales_data = sales_data
         return sales_data
 
     def get_geometry_string(self, lat_long_dict):
+        if not lat_long_dict:
+            return None
         lat = lat_long_dict.get("latitude")
         lon = lat_long_dict.get("longitude")
         return f"SRID=4326;POINT({lat} {lon})"
