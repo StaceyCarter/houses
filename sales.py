@@ -27,7 +27,9 @@ class Sales:
         return sales_model
 
     def get_geometry_string(self, lat_long_dict):
-        pass
+        lat = lat_long_dict.get("latitude")
+        lon = lat_long_dict.get("longitude")
+        return f"SRID=4326;POINT({lat} {lon})"
 
     def get_sales_model(self):
         return self.sales_model
