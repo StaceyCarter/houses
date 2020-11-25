@@ -13,7 +13,7 @@ class SalesModel(base):
     __tablename__ = "sales"
 
     sales_id = Column(Integer, autoincrement=True, primary_key=True)
-    last_updated = (Column(DateTime, onupdate=datetime.datetime.now),)
+    entry_created = Column(DateTime, default=datetime.datetime.now())
     auction_date = Column(DateTime)
     suburb = Column(String(200))
     street_number = Column(String(200))
