@@ -14,7 +14,7 @@ class Sales:
 
     def create_data(self, sales_dict, auction_date):
         sales_data = {
-            "auctionDate": self.get_date(auction_date),
+            "auction_date": self.get_date(auction_date),
             "suburb": sales_dict.get("suburb"),
             "street_number": sales_dict.get("streetNumber"),
             "street_name": sales_dict.get("streetName"),

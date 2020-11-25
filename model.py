@@ -3,6 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, Text, MetaData, Table, String, DateTime, Float
 from sqlalchemy.orm import sessionmaker
 from geoalchemy2 import Geometry
+import datetime
 
 base = declarative_base()
 metadata = MetaData()
@@ -12,7 +13,8 @@ class SalesModel(base):
     __tablename__ = "sales"
 
     sales_id = Column(Integer, autoincrement=True, primary_key=True)
-    auctionDate = Column(DateTime)
+    last_updated = (Column(DateTime, onupdate=datetime.datetime.now),)
+    auction_date = Column(DateTime)
     suburb = Column(String(200))
     street_number = Column(String(200))
     street_name = Column(String(200))
