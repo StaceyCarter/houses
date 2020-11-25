@@ -7,20 +7,8 @@ from geoalchemy2 import Geometry
 base = declarative_base()
 metadata = MetaData()
 
-class Queries(base):  
-    __tablename__ = 'queries'
 
-    query_id = Column(Integer, autoincrement=True, primary_key=True)
-    date_executed = Column(DateTime)
-    auction_date_retrieved = Column(DateTime)
-    number_listed_for_auction = Column(Integer)
-    number_withdrawn = Column(Integer)
-    number_unreported = Column(Integer)
-    number_auctioned = Column(Integer)
-    number_sold = Column(Integer)
-
-
-class Sales(base):
+class SalesModel(base):
     __tablename__ = "sales"
 
     sales_id = Column(Integer, autoincrement=True, primary_key=True)
@@ -38,7 +26,8 @@ class Sales(base):
     property_details_url = Column(String(400))
     agent = Column(String(400))
     agency_name = Column(String(400))
-    geom = Column(Geometry(geometry_type='POINT', srid='4362')) #4362 is lat long
+    geom = Column(Geometry(geometry_type="POINT", srid="4362"))  # 4362 is lat long
+
 
 def create_tables(db):
     base.metadata.create_all(db)

@@ -8,17 +8,15 @@ from model import create_tables
 # session.commit()
 
 
-# res_json = res.json()
-
-# import pdb; pdb.set_trace()
-
 def get_data():
     res = requests.get(
-        "https://www.domain.com.au/auction-results/api/city-summary/melbourne/2020-11-21")
+        "https://www.domain.com.au/auction-results/api/city-summary/melbourne/2020-11-21"
+    )
+    res_json = res.json()
 
 
 def get_db():
-    db_string = 'postgres:///houses'
+    db_string = "postgres:///houses"
     return create_engine(db_string, echo=True)
 
 
