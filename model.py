@@ -30,7 +30,10 @@ class SalesModel(base):
     agency_name = Column(String(400))
     price = Column(Float)
     result = Column(String(50))
-    geom = Column(Geometry(geometry_type="POINT", srid="4326"))  # 4326 is lat long
+    # TODO: Postgis stuff.. was hard to install on ec2. maybs come back to this in future.
+    # geom = Column(Geometry(geometry_type="POINT", srid="4326"))  # 4326 is lat long
+    longitude = Column(Float)  # 4326 is lat long
+    latitude = Column(Float)  # 4326 is lat long
 
 
 def create_tables(db):

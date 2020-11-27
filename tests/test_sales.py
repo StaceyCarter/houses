@@ -43,11 +43,13 @@ def get_test_listing():
         "expected_result": {
             "agency_name": "Nelson Alexander Essendon",
             "agent": "Nelson Alexander Essendon",
-            "auctionDate": datetime.datetime(2020, 11, 21, 0, 0),
+            "auction_date": datetime.datetime(2020, 11, 21, 0, 0),
             "bathrooms": 2,
             "bedrooms": 4,
             "car_spaces": 4,
-            "geom": "SRID=4326;POINT(-37.757401 144.9034335)",
+            # "geom": "SRID=4326;POINT(-37.757401 144.9034335)",
+            "latitude": -37.757401,
+            "longitude": 144.9034335,
             "postcode": "3040",
             "property_details_url": "https://www.domain.com.au/4-alma-street-aberfeldie-vic-3040-2016543328",
             "property_type": "House",
@@ -63,6 +65,9 @@ def get_test_listing():
 
 
 class TestSales(TestCase):
+    def setUp(self):
+        self.maxDiff = None
+
     def test_create_sales_entry(self):
         listing = get_test_listing()
         test_listing = listing["test_listing"]

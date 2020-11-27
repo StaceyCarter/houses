@@ -28,19 +28,29 @@ class Sales:
             "property_details_url": sales_dict.get("domainPropertyDetailsUrl"),
             "agent": sales_dict.get("agent"),
             "agency_name": sales_dict.get("agencyName"),
-            "geom": self.get_geometry_string(sales_dict.get("geoLocation")),
+            # "geom": self.get_geometry_string(sales_dict.get("geoLocation")),
+            "longitude": self.get_lat_long(sales_dict.get("geoLocation"))[1],
+            "latitude": self.get_lat_long(sales_dict.get("geoLocation"))[0],
             "price": sales_dict.get("price"),
             "result": sales_dict.get("result"),
         }
         self.sales_data = sales_data
         return sales_data
 
-    def get_geometry_string(self, lat_long_dict):
+    # TODO: reintroduce if we get postgis running on ec2
+    # def get_geometry_string(self, lat_long_dict):
+    #     if not lat_long_dict:
+    #         return None
+    #     lat = lat_long_dict.get("latitude")
+    #     lon = lat_long_dict.get("longitude")
+    #     return f"SRID=4326;POINT({lat} {lon})"
+
+    def get_lat_long(self, lat_long_dict):
         if not lat_long_dict:
-            return None
+            return [None, None]
         lat = lat_long_dict.get("latitude")
         lon = lat_long_dict.get("longitude")
-        return f"SRID=4326;POINT({lat} {lon})"
+        return [lat, lon]
 
     def get_date(self, date_time_string):
         date_string = date_time_string.split("T")[
